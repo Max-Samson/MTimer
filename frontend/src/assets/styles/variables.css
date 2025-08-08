@@ -1,0 +1,81 @@
+/* CSS变量定义 */
+
+:root {
+  /* 基础颜色 */
+  --color-primary: #3A82F6;
+  --color-success: #20bf6b;
+  --color-warning: #f39c12;
+  --color-danger: #e74c3c;
+  --color-info: #4b7bec;
+  --color-tomato: #ff6b6b;
+
+  /* 文本颜色 */
+  --color-text-primary: #333;
+  --color-text-regular: #606266;
+  --color-text-secondary: #909399;
+  --color-text-placeholder: #C0C4CC;
+
+  /* 边框和背景颜色 */
+  --color-border: #DCDFE6;
+  --color-border-light: #E4E7ED;
+  --color-background: #FFF;
+  --color-background-light: #F5F7FA;
+  --color-background-hover: #f5f7fa;
+
+  /* 阴影 */
+  --box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
+
+  /* 过渡动画 */
+  --transition-duration: 0.3s;
+
+  /* 圆角 */
+  --border-radius-small: 4px;
+  --border-radius-base: 8px;
+  --border-radius-large: 12px;
+
+  /* 间距 */
+  --spacing-mini: 4px;
+  --spacing-small: 8px;
+  --spacing-base: 16px;
+  --spacing-large: 24px;
+  --spacing-xlarge: 32px;
+}
+
+/* 暗黑主题变量 */
+:root[data-theme="dark"] {
+  /* 暗黑模式基础颜色 - 保持主色调基本不变 */
+  --dark-color-primary: #3A82F6;
+  --dark-color-success: #26de81;
+  --dark-color-warning: #f1c40f;
+  --dark-color-danger: #e84393;
+  --dark-color-info: #4b7bec;
+  --dark-color-tomato: #ff6b6b;
+
+  /* 暗黑模式文本颜色 */
+  --dark-color-text-primary: #E5EAF3;
+  --dark-color-text-regular: #A3ABB2;
+  --dark-color-text-secondary: #909399;
+  --dark-color-text-placeholder: #8C8C8C;
+
+  /* 暗黑模式边框和背景颜色 */
+  --dark-color-border: #4C5D7A;
+  --dark-color-border-light: #3A4559;
+  --dark-color-background: #252D3C;
+  --dark-color-background-light: #1E2330;
+  --dark-color-background-hover: #33415a;
+
+  /* 暗黑模式阴影 */
+  --dark-box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+
+  /* 将暗黑模式的颜色变量映射到通用变量，以简化组件中的使用 */
+  --color-background: var(--dark-color-background);
+  --color-background-light: var(--dark-color-background-light);
+  --color-background-hover: var(--dark-color-background-hover);
+  --color-border: var(--dark-color-border);
+  --color-border-light: var(--dark-color-border-light);
+  --color-text-primary: var(--dark-color-text-primary);
+  --color-text-regular: var(--dark-color-text-regular);
+  --color-text-secondary: var(--dark-color-text-secondary);
+  --color-text-placeholder: var(--dark-color-text-placeholder);
+  --box-shadow: var(--dark-box-shadow);
+}

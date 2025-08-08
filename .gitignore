@@ -1,0 +1,59 @@
+# --- 编译生成文件 ---
+*.exe
+*.dll
+*.so
+*.a
+*.lib
+*.out
+*.app
+/bin/
+/dist/
+/release/
+
+# --- 前端相关 ---
+/node_modules/
+/.npm
+/.yarn
+/yarn.lock
+/package-lock.json
+/frontend/.vite/
+/frontend/.cache/
+/frontend/node_modules/
+/frontend/src/tests
+
+# --- 后端相关 ---
+/.idea/
+/.vscode/
+*.swp
+*.swo
+*.log
+*.tmp
+
+# --- 数据库 & 本地存储 ---
+/storage/*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+
+# --- 音频/媒体文件（建议用 Git LFS 或外部存储） ---
+*.ogg
+*.mp4
+*.mov
+
+# --- 环境配置 ---
+.env
+.env.local
+.env.development
+.env.production
+
+# --- 操作系统生成文件 ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- IDE/编辑器临时文件 ---
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

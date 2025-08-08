@@ -1,0 +1,325 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-primary: 255 99 71;
+    --color-primary-dark: 255 122 92;
+    --color-secondary: 50 205 50;
+    --color-secondary-dark: 78 218 78;
+    --color-bg-light: 255 245 240;
+    --color-bg-dark: 18 24 36;
+    --color-text-light: 51 51 51;
+    --color-text-dark: 232 232 232;
+    --transition-time: 0.4s;
+  }
+
+  html {
+    @apply bg-[rgb(var(--color-bg-dark))] text-center text-[rgb(var(--color-text-dark))];
+
+    transition: background-color var(--transition-time) ease, color var(--transition-time) ease;
+  }
+
+  body {
+    @apply m-0 text-[rgb(var(--color-text-dark))];
+
+    font-family: Nunito, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    transition: color var(--transition-time) ease;
+  }
+
+  /* 亮色模式样式 */
+  :root[data-theme="light"] html {
+    @apply bg-[rgb(var(--color-bg-light)/50%)] text-[rgb(var(--color-text-light))];
+  }
+
+  :root[data-theme="light"] body {
+    @apply text-[rgb(var(--color-text-light))];
+  }
+
+  @font-face {
+    font-family: Nunito;
+    font-style: normal;
+    font-weight: 400;
+    src: local(""),
+      url("assets/fonts/nunito-v16-latin-regular.woff2") format("woff2");
+  }
+
+  #app {
+    @apply h-screen text-center;
+
+    transition: background-color var(--transition-time) ease;
+  }
+}
+
+@layer components {
+  /* 暗色模式特有样式 */
+  :root[data-theme="dark"] .n-button:hover {
+    @apply animate-pulse;
+  }
+
+  /* 暗色模式下的滚动条样式 */
+  :root[data-theme="dark"] ::-webkit-scrollbar {
+    @apply w-2;
+  }
+
+  :root[data-theme="dark"] ::-webkit-scrollbar-track {
+    @apply rounded bg-white/10;
+  }
+
+  :root[data-theme="dark"] ::-webkit-scrollbar-thumb {
+    @apply rounded bg-[rgb(var(--color-primary))/60%];
+  }
+
+  :root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+    @apply bg-[rgb(var(--color-primary))/80%];
+  }
+
+  /* Naive UI 暗色模式样式调整 */
+  :root[data-theme="dark"] .n-card {
+    @apply border border-white/5 bg-[rgb(30,35,45)/90%] shadow-md;
+  }
+
+  :root[data-theme="dark"] .n-input {
+    @apply border border-white/10 bg-[rgb(40,45,55)/80%];
+  }
+
+  :root[data-theme="dark"] .n-input:focus,
+  :root[data-theme="dark"] .n-input:hover {
+    @apply border border-[rgb(var(--color-primary))/50%];
+  }
+
+  /* 改进AI助手输入框在暗黑模式下的可见度 */
+  :root[data-theme="dark"] .chat-input .n-input__textarea-el {
+    @apply text-gray-100 placeholder-gray-400 bg-gray-700/90 !important;
+
+    box-shadow: 0 0 0 1px rgb(255 255 255 / 10%);
+    caret-color: rgb(var(--color-primary)) !important;
+  }
+
+  :root[data-theme="dark"] .chat-input .n-input__textarea-el:focus {
+    @apply ring-2 ring-indigo-500/50 !important;
+
+    border-color: rgb(var(--color-primary) 0.5) !important;
+  }
+
+  :root[data-theme="dark"] .chat-input .n-input__textarea-el::placeholder {
+    @apply text-gray-400 !important;
+
+    opacity: 0.7;
+  }
+
+  :root[data-theme="dark"] .n-drawer-content {
+    @apply border-l border-white/5 bg-[rgb(25,30,40)/95%] shadow-lg;
+  }
+
+  :root[data-theme="dark"] .n-tabs-bar {
+    @apply bg-[rgb(var(--color-primary-dark))];
+  }
+
+  /* 暗色模式标题和链接样式 */
+  :root[data-theme="dark"] h1,
+  :root[data-theme="dark"] h2,
+  :root[data-theme="dark"] h3,
+  :root[data-theme="dark"] h4 {
+    @apply text-[rgb(var(--color-text-dark))];
+  }
+
+  :root[data-theme="dark"] a {
+    @apply text-[rgb(var(--color-primary-dark))] transition-colors duration-300;
+  }
+
+  :root[data-theme="dark"] a:hover {
+    @apply text-[#ff9985];
+  }
+}
+
+@layer utilities {
+  /* 自定义动画 */
+  @keyframes fade-in-dark {
+    from {
+      @apply opacity-0 brightness-75;
+    }
+
+    to {
+      @apply opacity-100 brightness-100;
+    }
+  }
+
+  :root[data-theme="dark"] #app {
+    animation: fade-in-dark 0.5s ease-out;
+  }
+}
+
+/* AI助手相关样式 */
+.message-bubble {
+  @apply flex max-w-full items-start gap-3 py-1;
+}
+
+.message-user {
+  @apply flex-row-reverse;
+}
+
+.message-content {
+  @apply flex max-w-[calc(100%-60px)] flex-col;
+}
+
+.message-body {
+  @apply rounded-xl p-3 text-sm shadow-sm transition-all;
+}
+
+.message-body-user {
+  @apply rounded-tr-sm bg-blue-500 text-white;
+}
+
+.message-body-assistant {
+  @apply rounded-tl-sm bg-white text-gray-800;
+}
+
+:root[data-theme="dark"] .message-body-assistant {
+  @apply bg-gray-700 text-gray-100;
+}
+
+.task-preview {
+  @apply ml-12 mt-1 w-full max-w-[calc(100%-70px)] rounded-xl bg-gray-100 p-4 transition-all;
+}
+
+:root[data-theme="dark"] .task-preview {
+  @apply bg-gray-800;
+}
+
+.task-preview-header {
+  @apply mb-4 flex items-center justify-between;
+}
+
+.task-preview-header h3 {
+  @apply m-0 text-base font-semibold text-blue-500;
+}
+
+.ai-chat-container {
+  @apply flex h-full flex-col overflow-hidden;
+}
+
+.chat-history {
+  @apply flex flex-1 flex-col gap-4 overflow-y-auto p-4;
+}
+
+/* 优化AI助手界面在黑暗模式下的样式 */
+:root[data-theme="dark"] .ai-chat-container {
+  @apply bg-gray-800/95 border-gray-700 shadow-lg shadow-gray-900/30;
+}
+
+:root[data-theme="dark"] .input-area {
+  @apply bg-gray-800/80 border-gray-700/80;
+}
+
+/* 输入框焦点状态增强 */
+:root[data-theme="dark"] .chat-input {
+  @apply bg-gray-700/90 border-gray-600 focus-within:ring-2 focus-within:ring-indigo-500/50 focus-within:border-indigo-400;
+
+  transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] .chat-input:hover {
+  @apply shadow-md shadow-indigo-500/10;
+}
+
+/* 更好的对比度和可视性 */
+:root[data-theme="dark"] .ai-assistant-view {
+  @apply from-gray-900 to-indigo-950/40 bg-gradient-to-br;
+}
+
+/* 思考中动画改进 */
+:root[data-theme="dark"] .thinking-container {
+  @apply bg-indigo-900/30 border border-indigo-800/50;
+}
+
+:root[data-theme="dark"] .example-prompt {
+  @apply bg-gray-800/80 border-gray-700 hover:bg-indigo-900/40 hover:border-indigo-700;
+}
+
+/* 改进文本可读性 */
+:root[data-theme="dark"] .message-body,
+:root[data-theme="dark"] .task-preview {
+  @apply text-gray-100;
+}
+
+/* 更多AI助手相关动画效果 */
+.message-enter-left {
+  animation: slide-in-from-left 0.3s ease-out;
+}
+
+.message-enter-right {
+  animation: slide-in-from-right 0.3s ease-out;
+}
+
+@keyframes slide-in-from-left {
+  0% {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes slide-in-from-right {
+  0% {
+    opacity: 0;
+    transform: translateX(10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* 黑暗模式下AI图标发光效果 */
+:root[data-theme="dark"] .ai-chat-container .n-avatar {
+  transition: all 0.5s ease;
+}
+
+:root[data-theme="dark"] .ai-chat-container .message-bubble:hover .n-avatar {
+  box-shadow: 0 0 12px rgb(99 102 241 / 50%);
+}
+
+/* 改进黑暗模式下的按钮悬停效果 */
+:root[data-theme="dark"] .chat-input:focus-within {
+  animation: focus-glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes focus-glow {
+  from {
+    box-shadow: 0 0 5px rgb(99 102 241 / 30%);
+  }
+
+  to {
+    box-shadow: 0 0 15px rgb(99 102 241 / 60%);
+  }
+}
+
+/* 黑暗模式下的思考动画增强版 */
+:root[data-theme="dark"] .thinking-container-enhanced {
+  overflow: hidden;
+  position: relative;
+}
+
+:root[data-theme="dark"] .thinking-container-enhanced::after {
+  animation: shimmer 2s infinite;
+  background: linear-gradient(to right, transparent, rgb(99 102 241 / 10%), transparent);
+  content: '';
+  inset: 0;
+  position: absolute;
+  transform: translateX(-100%);
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}

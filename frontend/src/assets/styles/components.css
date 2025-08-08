@@ -1,0 +1,211 @@
+/* 通用组件样式 */
+
+/* 加载状态样式 */
+.loading-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 200px;
+  padding: 20px 0;
+  width: 100%;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  border: 3px solid rgb(0 0 0 / 10%);
+  border-left-color: var(--color-primary, #3A82F6);
+  border-radius: 50%;
+  height: 30px;
+  margin-bottom: 12px;
+  width: 30px;
+}
+
+.loading-spinner-small {
+  border-width: 2px;
+  height: 16px;
+  margin-bottom: 0;
+  width: 16px;
+}
+
+.loading-text {
+  color: var(--color-text-secondary, #909399);
+  font-size: 14px;
+}
+
+/* 空状态样式 */
+.empty-container {
+  align-items: center;
+  color: var(--color-text-secondary, #909399);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 200px;
+  padding: 32px 0;
+  width: 100%;
+}
+
+.empty-icon {
+  color: var(--color-text-secondary, #909399);
+  margin-bottom: 16px;
+}
+
+.empty-text {
+  color: var(--color-text-secondary, #909399);
+  font-size: 14px;
+  margin-bottom: 16px;
+}
+
+.empty-tip {
+  color: var(--color-text-placeholder, #C0C4CC);
+  font-size: 12px;
+  margin-top: 8px;
+}
+
+/* 图表容器样式 */
+.chart-container {
+  height: 100%;
+  min-height: 300px;
+  width: 100%;
+}
+
+.chart-wrapper {
+  background-color: var(--color-background, white);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+  min-height: 350px;
+  padding: 16px;
+}
+
+.chart-title {
+  color: var(--color-text-primary, #333);
+  flex: 0 0 auto;
+  font-size: 16px;
+  margin-bottom: 16px;
+  text-align: center;
+}
+
+/* 卡片样式 */
+.stat-card {
+  align-items: center;
+  background-color: var(--color-background, white);
+  border-radius: 8px;
+  box-shadow: 0 2px 12px rgb(0 0 0 / 10%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  transition: all 0.3s;
+}
+
+.stat-card:hover {
+  transform: translateY(-3px);
+}
+
+.stat-icon {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--color-text-regular, #606266);
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.stat-value {
+  color: var(--color-primary, #3A82F6);
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* 统计卡片网格 */
+.stat-cards {
+  display: grid;
+  gap: 16px;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  margin-bottom: 24px;
+}
+
+/* 图表网格 */
+.charts-container {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* 按钮样式 */
+.refresh-btn {
+  align-items: center;
+  background-color: var(--color-background, white);
+  border: 1px solid var(--color-border, #DCDFE6);
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  height: 36px;
+  justify-content: center;
+  transition: all 0.3s;
+  width: 36px;
+}
+
+.refresh-btn:hover {
+  background-color: var(--color-background-hover, #f5f7fa);
+}
+
+.refresh-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* 动画 */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* 响应式布局 */
+@media (width <= 768px) {
+  .charts-container {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-cards {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 暗黑主题 */
+:root[data-theme="dark"] .chart-title,
+:root[data-theme="dark"] .section-title {
+  color: var(--dark-color-text-primary, #E5EAF3);
+}
+
+:root[data-theme="dark"] .stat-card,
+:root[data-theme="dark"] .chart-wrapper {
+  background-color: var(--dark-color-background, #252D3C);
+  box-shadow: 0 2px 12px rgb(0 0 0 / 20%);
+}
+
+:root[data-theme="dark"] .filter-btn {
+  background-color: var(--dark-color-background, #252D3C);
+  border-color: var(--dark-color-border, #4C5D7A);
+  color: var(--dark-color-text-primary, #E5EAF3);
+}
+
+:root[data-theme="dark"] .loading-spinner {
+  border-color: rgb(255 255 255 / 10%);
+  border-left-color: var(--color-primary, #3A82F6);
+}
+
+:root[data-theme="dark"] .empty-container,
+:root[data-theme="dark"] .empty-text,
+:root[data-theme="dark"] .empty-icon {
+  color: var(--dark-color-text-secondary, #909399);
+}
+
+:root[data-theme="dark"] .loading-text {
+  color: var(--dark-color-text-secondary, #909399);
+}
